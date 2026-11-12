@@ -114,17 +114,16 @@
     }
 
     /* Center Lock Emblem */
-   palms-overlay {
+  #palms-overlay {
       position: absolute;
       inset: 0;
       z-index: 15;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: clamp(24px, 6vw, 90px);
-      padding: 0 6%;
+      gap: clamp(12px, 2.5vw, 35px); /* REDUCED GAP so more palms fit side-by-side */
+      padding: 0 4%;
       transition: opacity 0.6s ease;
-      transform: translateY(15vh); /* <-- ADD THIS LINE HERE */
     }
 
     body.opened {
@@ -158,22 +157,21 @@
       transition: opacity 0.6s ease;
     }
 
- .palm-slot {
+.palm-slot {
       position: relative;
-      width: clamp(150px, 18vw, 250px);
-      height: clamp(190px, 23vw, 320px);
+      width: clamp(95px, 11vw, 150px);   /* SMALLER WIDTH (was 150px - 250px) */
+      height: clamp(125px, 14vw, 195px); /* SMALLER HEIGHT (was 190px - 320px) */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border-radius: 24px;
+      border-radius: 18px;               /* Slightly tighter corner radius */
       border: 2px solid rgba(56, 189, 248, 0.45);
       background: rgba(8, 20, 48, 0.72);
       box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
       animation: pulseGlow 2.8s infinite ease-in-out;
       overflow: hidden;
-      
-      margin-top: 25vh; /* <-- ADD THIS LINE HERE */
+      margin-top: 25vh;
     }
 
     @keyframes pulseGlow {
@@ -273,7 +271,7 @@
   <div id="gate-right" class="gate"></div>
   <div id="center-lock"></div>
 
-  <!-- 3 VIP Handprints Overlay -->
+  <!-- 4 VIP Handprints Overlay -->
   <div id="palms-overlay">
     <div class="palm-slot">
       <div class="scan-line"></div>
@@ -291,6 +289,14 @@
       </svg>
     </div>
 
+     <div class="palm-slot">
+      <div class="scan-line"></div>
+      <svg class="palm-svg" viewBox="0 0 100 120">
+        <path d="M32 62 V28 a4 4 0 0 1 8 0 V56 M42 54 V18 a4 4 0 0 1 8 0 V54 M52 54 V21 a4 4 0 0 1 8 0 V56 M62 58 V32 a4 4 0 0 1 8 0 V68 C70 88 60 104 45 104 C31 104 22 92 18 76 L12 58 a4 4 0 0 1 7 -4 L27 68 V62 Z" />
+        <circle cx="46" cy="76" r="10" stroke-dasharray="3 3" />
+      </svg>
+    </div>
+
     <div class="palm-slot">
       <div class="scan-line"></div>
       <svg class="palm-svg" viewBox="0 0 100 120">
@@ -300,23 +306,6 @@
     </div>
   </div>
 
-      <div class="palm-slot">
-      <div class="scan-line"></div>
-      <svg class="palm-svg" viewBox="0 0 100 120">
-        <path d="M32 62 V28 a4 4 0 0 1 8 0 V56 M42 54 V18 a4 4 0 0 1 8 0 V54 M52 54 V21 a4 4 0 0 1 8 0 V56 M62 58 V32 a4 4 0 0 1 8 0 V68 C70 88 60 104 45 104 C31 104 22 92 18 76 L12 58 a4 4 0 0 1 7 -4 L27 68 V62 Z" />
-        <circle cx="46" cy="76" r="10" stroke-dasharray="3 3" />
-      </svg>
-    </div>
-  </div>
-
-      <div class="palm-slot">
-      <div class="scan-line"></div>
-      <svg class="palm-svg" viewBox="0 0 100 120">
-        <path d="M32 62 V28 a4 4 0 0 1 8 0 V56 M42 54 V18 a4 4 0 0 1 8 0 V54 M52 54 V21 a4 4 0 0 1 8 0 V56 M62 58 V32 a4 4 0 0 1 8 0 V68 C70 88 60 104 45 104 C31 104 22 92 18 76 L12 58 a4 4 0 0 1 7 -4 L27 68 V62 Z" />
-        <circle cx="46" cy="76" r="10" stroke-dasharray="3 3" />
-      </svg>
-    </div>
-  </div>
 
   <!-- Subtle Operator Instruction -->
   <div id="operator-hint">Click anywhere or press SPACEBAR to launch (R to reset)</div>
