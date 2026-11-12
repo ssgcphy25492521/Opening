@@ -326,9 +326,6 @@
   <!-- Subtle Operator Instruction -->
   <div id="operator-hint">Click anywhere or press SPACEBAR to launch (R to reset)</div>
 
-  <!-- School Hymn Audio -->
-  <audio id="school-hymn" src="school-hymn.mp3" preload="auto"></audio>
- 
   <script>
     const SCAN_DURATION_MS = 2200;
 
@@ -520,7 +517,7 @@
       }
       createFireworkBurst();
       setTimeout(createFireworkBurst, 300);
-      fireworkInterval = setInterval(createFireworkBurst, 500);
+      fireworkInterval = setInterval(createFireworkBurst, 300);
     }
 
     function stopFireworks() {
@@ -575,22 +572,15 @@
     document.addEventListener('keydown', (e) => {
       if (e.code === 'Space') {
         e.preventDefault();
-    function handleScreenTrigger() {
-      initAudio();
-
-      const hymn = document.getElementById('school-hymn');
-      if (hymn && currentState === 'IDLE') {
-        hymn.play().then(() => {
-          hymn.pause();
-          hymn.currentTime = 0;
-        }).catch(err => console.log("Audio unlock waiting:", err));
+        handleScreenTrigger();
+      } else if (e.code === 'KeyR' || e.key === 'r' || e.key === 'R') {
+        e.preventDefault();
+        resetCeremony();
       }
-
-      triggerLaunchSequence();
-    }
     });
 
   </script>
 </body>
 </html>
+
 
