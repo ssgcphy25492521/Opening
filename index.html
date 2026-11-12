@@ -113,19 +113,6 @@
       box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9);
     }
 
-    /* Center Lock Emblem */
-  #palms-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 15;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(12px, 2.5vw, 35px); /* REDUCED GAP so more palms fit side-by-side */
-      padding: 0 4%;
-      transition: opacity 0.6s ease;
-    }
-
     body.opened {
       cursor: default;
     }
@@ -144,7 +131,7 @@
       pointer-events: none;
     }
 
-    /* Palms Container (3 Palms) */
+    /* Palms Container (6 Palms) */
     #palms-overlay {
       position: absolute;
       inset: 0;
@@ -152,26 +139,26 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: clamp(24px, 6vw, 90px);
-      padding: 0 6%;
+      gap: clamp(12px, 2.5vw, 35px);
+      padding: 0 4%;
       transition: opacity 0.6s ease;
     }
 
-.palm-slot {
+    .palm-slot {
       position: relative;
-      width: clamp(65px, 7.5vw, 105px);   /* EVEN SMALLER WIDTH */
-      height: clamp(85px, 9.5vw, 135px);  /* EVEN SMALLER HEIGHT */
+      width: clamp(65px, 7.5vw, 105px);
+      height: clamp(85px, 9.5vw, 135px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border-radius: 18px;               /* Slightly tighter corner radius */
+      border-radius: 18px;
       border: 2px solid rgba(56, 189, 248, 0.45);
       background: rgba(8, 20, 48, 0.72);
       box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
       animation: pulseGlow 2.8s infinite ease-in-out;
       overflow: hidden;
-      margin-top: 50vh;/* <-- INCREASE THIS NUMBER (try 35vh, 40vh, or 45vh) */
+      margin-top: 50vh;
     }
 
     @keyframes pulseGlow {
@@ -261,7 +248,7 @@
     <canvas id="fireworks-canvas"></canvas>
     <div class="event-content" id="event-content">
       <div class="event-subtitle-top">WELCOME TO</div>
-      <div class="event-title">ST. STEPHEN'S GIRLS'COLLEGE</div>
+      <div class="event-title">ST. STEPHEN'S GIRLS' COLLEGE</div>
       <div class="event-subtitle-bottom">120<sup>th</sup> ANNIVERSARY OPEN DAY</div>
     </div>
   </div>
@@ -322,7 +309,6 @@
     </div>
   </div>
 
-
   <!-- Subtle Operator Instruction -->
   <div id="operator-hint">Click anywhere or press SPACEBAR to launch (R to reset)</div>
 
@@ -332,6 +318,11 @@
     let currentState = 'IDLE'; // 'IDLE' | 'SCANNING' | 'OPENED'
     let scanTimeout = null;
     let fireworkInterval = null;
+
+    // Set up the school hymn
+    let bgMusic = new Audio('school-hymn.mp3');
+    bgMusic.volume = 0.6; // Adjust volume from 0.0 to 1.0
+    bgMusic.loop = true;  // Loops the hymn continuously
 
     // ==========================================
     // SYNTHESIZED SOUND EFFECTS
@@ -549,6 +540,9 @@
 
         playGateOpenSound();
         startFireworks();
+        
+        // Play the school hymn when gates open
+        bgMusic.play().catch(e => console.log("Audio play failed:", e));
       }, SCAN_DURATION_MS);
     }
 
@@ -559,6 +553,10 @@
 
       document.body.classList.remove('scanning', 'opened');
       document.getElementById('event-content').classList.remove('visible');
+      
+      // Stop the school hymn and rewind to start
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
     }
 
     function handleScreenTrigger() {
@@ -578,9 +576,6 @@
         resetCeremony();
       }
     });
-
   </script>
 </body>
 </html>
-
-
