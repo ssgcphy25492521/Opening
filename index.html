@@ -575,11 +575,19 @@
     document.addEventListener('keydown', (e) => {
       if (e.code === 'Space') {
         e.preventDefault();
-        handleScreenTrigger();
-      } else if (e.code === 'KeyR' || e.key === 'r' || e.key === 'R') {
-        e.preventDefault();
-        resetCeremony();
+    function handleScreenTrigger() {
+      initAudio();
+
+      const hymn = document.getElementById('school-hymn');
+      if (hymn && currentState === 'IDLE') {
+        hymn.play().then(() => {
+          hymn.pause();
+          hymn.currentTime = 0;
+        }).catch(err => console.log("Audio unlock waiting:", err));
       }
+
+      triggerLaunchSequence();
+    }
     });
 
   </script>
