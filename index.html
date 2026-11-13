@@ -445,7 +445,7 @@
         this.vx = Math.cos(angle) * speed;
         this.vy = Math.sin(angle) * speed;
         this.alpha = 1;
-        this.decay = Math.random() * 0.015 + 0.012;
+        this.decay = Math.random() * 0.03 + 0.025;
         this.gravity = 0.06;
       }
 
@@ -459,15 +459,11 @@
       }
 
       draw() {
-        ctx.save();
         ctx.globalAlpha = Math.max(0, this.alpha);
         ctx.beginPath();
         ctx.arc(this.x, this.y, 2.5, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;
         ctx.fill();
-        ctx.restore();
       }
     }
 
@@ -496,6 +492,8 @@
           particles.splice(i, 1);
         }
       }
+
+      ctx.globalAlpha = 1;
 
       animationFrameId = requestAnimationFrame(animateFireworks);
     }
