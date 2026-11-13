@@ -309,8 +309,6 @@
     </div>
   </div>
 
-  <!-- Subtle Operator Instruction -->
-  <div id="operator-hint">Click anywhere or press SPACEBAR to launch (R to reset)</div>
 
   <script>
     const SCAN_DURATION_MS = 2200;
@@ -507,8 +505,8 @@
         animateFireworks();
       }
       createFireworkBurst();
-      setTimeout(createFireworkBurst, 300);
-      fireworkInterval = setInterval(createFireworkBurst, 300);
+      setTimeout(createFireworkBurst, 250);
+      fireworkInterval = setInterval(createFireworkBurst, 700);
     }
 
     function stopFireworks() {
